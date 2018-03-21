@@ -21,6 +21,9 @@ namespace WindowsFormsApp5
         public Form4()
         {
             InitializeComponent();
+            mapUserControl1.Map.ZoomLevel = 7;
+            mapUserControl1.Map.Center = new Location(52.191735, 3.0369282);
+            mapUserControl1.Map.CredentialsProvider = new ApplicationIdCredentialsProvider("AhAI5K2EcnQZDcORVbCzo3ny5iDZSwySoZxalua_NmT-OhfDDoXgV3gW-2Atqp0k");
             drawNewCrimeChart(2006);
 
             crimeRatio1.Checked = true;
