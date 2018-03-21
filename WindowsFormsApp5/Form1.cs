@@ -24,7 +24,6 @@ namespace WindowsFormsApp5
             string connectionString;
             string commandText = "SELECT * From GeolocProv";
 
-
             connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["WindowsFormsApp5.Properties.Settings.Database1ConnectionString"].ConnectionString;
             using (connection = new SqlConnection(connectionString))
             {
@@ -55,11 +54,12 @@ namespace WindowsFormsApp5
             }
 
 
-                   
-                        mapUserControl1.Map.ZoomLevel = 7;
+
+            mapUserControl1.Map.ZoomLevel = 7;
             mapUserControl1.Map.Center = new Location(52.191735, 3.0369282);
             mapUserControl1.Map.CredentialsProvider = new ApplicationIdCredentialsProvider("AhAI5K2EcnQZDcORVbCzo3ny5iDZSwySoZxalua_NmT-OhfDDoXgV3gW-2Atqp0k");
 
+        }
             /* MapPolyline polyline = new MapPolyline();
              polyline.Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Blue);
              polyline.StrokeThickness = 100;
@@ -71,24 +71,16 @@ namespace WindowsFormsApp5
              };
               mapUserControl1.Map.Children.Add(polyline);
              */
- 
 
-
-            void Onb2Click(object sender, RoutedEventArgs e)
-            {
-                Pushpin p = e.Source as Pushpin;
-                Form2 popup = new Form2(p.Content.ToString());
-                DialogResult dialogresult = popup.ShowDialog();
-                popup.Dispose();
-            }
-
-
-
-
-
-
+            public void Onb2Click(object sender, RoutedEventArgs e)
+        {
+            Pushpin p = e.Source as Pushpin;
+            Form2 popup = new Form2(p.Content.ToString());
+            DialogResult dialogresult = popup.ShowDialog();
+            popup.Dispose();
         }
 
+        }
     }
+ 
 
-}

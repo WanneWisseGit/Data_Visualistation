@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.FileIO;
-using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Net;
@@ -58,9 +53,6 @@ namespace WindowsFormsApp5
                 pictureBox1.Image = null;
             }
 
-          
-
-
             foreach (var r in JSONObj["results"]) {
                 decimal lat = (r["geometry"]["location"]["lat"]);
                 decimal len = (r["geometry"]["location"]["lng"]);
@@ -76,10 +68,6 @@ namespace WindowsFormsApp5
                 // Adds the pushpin to the map.
                 mapUserControl1.Map.Children.Add(pins);
             } 
-           
-           
-
-
 
             label1.Text = (JSONObj["results"][0]["formatted_address"] + "\n" + JSONObj["results"][1]["formatted_address"] + "\n" + JSONObj["results"][2]["formatted_address"]);
 
@@ -105,10 +93,6 @@ namespace WindowsFormsApp5
                     DataTable GEMEENTE = new DataTable();
                     adapter.Fill(GEMEENTE);
 
-
-                    
-
-
                     foreach (DataRow row in GEMEENTE.Rows)
                     {
                         Console.WriteLine("Hallo");
@@ -120,22 +104,12 @@ namespace WindowsFormsApp5
                         this.chart1.Series["Groen1"].Points.AddXY("2015", row["J2015"].ToString());
                         this.chart1.Series["Groen1"].Points.AddXY("2016", row["J2017"].ToString());
 
-
-
-
-
                     }
-
                 }
-
-
             }
             mapUserControl1.Map.ZoomLevel = 7;
             mapUserControl1.Map.Center = new Location(52.191735, 3.0369282);
             mapUserControl1.Map.CredentialsProvider = new ApplicationIdCredentialsProvider("AhAI5K2EcnQZDcORVbCzo3ny5iDZSwySoZxalua_NmT-OhfDDoXgV3gW-2Atqp0k");
-
-
-
         }
     }
 }

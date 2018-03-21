@@ -15,7 +15,7 @@ namespace WindowsFormsApp5
     {
         private bool Slided;
         private string selectedCrimeChartInfoType = "crimeratio";
-
+        public string province = "Drenthe";
 
         public Form4()
         {
@@ -23,6 +23,40 @@ namespace WindowsFormsApp5
             mapUserControl1.Map.ZoomLevel = 7;
             mapUserControl1.Map.Center = new Location(52.191735, 3.0369282);
             mapUserControl1.Map.CredentialsProvider = new ApplicationIdCredentialsProvider("AhAI5K2EcnQZDcORVbCzo3ny5iDZSwySoZxalua_NmT-OhfDDoXgV3gW-2Atqp0k");
+
+            SqlConnection connection;
+            string connectionString;
+            string commandText = "SELECT * From GeolocProv";
+
+            connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["WindowsFormsApp5.Properties.Settings.Database1ConnectionString"].ConnectionString;
+            using (connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(commandText, connection);
+                connection.Open();
+
+
+                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                {
+                    DataTable ProvinGeo = new DataTable();
+                    adapter.Fill(ProvinGeo);
+                    foreach (DataRow row in ProvinGeo.Rows)
+                    {
+                        string prov = (string)row["Provin"];
+                        float lat = float.Parse(row["lat"].ToString());
+                        float lon = float.Parse(row["lon"].ToString());
+
+                        Pushpin pins = new Pushpin();
+                        pins.Name = "hallo";
+                        pins.Content = prov;
+                        pins.Location = new Location(lat, lon); 
+                        pins.AddHandler(Pushpin.MouseDownEvent, new RoutedEventHandler(Onb2Click));
+                        // Adds the pushpin to the map.
+                        mapUserControl1.Map.Children.Add(pins);
+
+                    }
+                }
+            }
+
             drawNewCrimeChart(2006);
 
             crimeRatio1.Checked = true;
@@ -30,9 +64,7 @@ namespace WindowsFormsApp5
             Slided = false;
 
         }
-        //begin van vraagje vrime
-        //
-        //
+  
         private void drawNewCrimeChart(int year)
         {
             //Database connection
@@ -54,6 +86,7 @@ namespace WindowsFormsApp5
 
             //Store query result in datatable for later use
             DataTable misdrijf = new DataTable();
+
             data.Fill(misdrijf);
             //Empty the crimechart
             chart1.Series[0].Points.Clear();
@@ -69,7 +102,6 @@ namespace WindowsFormsApp5
                 string provincie = row[0].ToString();
                 int popIncrease = Convert.ToInt32(row[1]) - Convert.ToInt32(row[2]);
                 int crimeIncrease = Convert.ToInt32(row[3]) - Convert.ToInt32(row[4]);
-                Console.WriteLine(popIncrease.ToString() + " | " + crimeIncrease.ToString());
                 int crimeRatio = (popIncrease / crimeIncrease);
              
 
@@ -98,6 +130,7 @@ namespace WindowsFormsApp5
         {
             int year = crimeTrackbar.Value;
             drawNewCrimeChart(year);
+            getNewMapData(province);
             currentYear.Text = year.ToString();
         }
         //Set crimechart type to populution increase
@@ -105,6 +138,7 @@ namespace WindowsFormsApp5
         {
             selectedCrimeChartInfoType = "pop";
             drawNewCrimeChart(crimeTrackbar.Value);
+            getNewMapData(province);
             chartTypeExplain.Text = "Popululation change since 2005";
         }
 
@@ -113,6 +147,7 @@ namespace WindowsFormsApp5
         {
             selectedCrimeChartInfoType = "crime";
             drawNewCrimeChart(crimeTrackbar.Value);
+            getNewMapData(province);
             chartTypeExplain.Text = "Crime change since 2005";
         }
 
@@ -121,7 +156,58 @@ namespace WindowsFormsApp5
         {
             selectedCrimeChartInfoType = "crimeratio";
             drawNewCrimeChart(crimeTrackbar.Value);
+            getNewMapData(province);
             chartTypeExplain.Text = "pop/crime ratio. The change of population total and crime total since 2005.";
+        }
+
+        public void Onb2Click(object sender, RoutedEventArgs e)
+        {
+            Pushpin p = e.Source as Pushpin;
+            setProv(p);
+            getNewMapData(province);
+        }
+
+        private void setProv(Pushpin p)
+        {
+            province = p.Content.ToString();
+        }
+
+        private void getNewMapData(string prov)
+        {
+            SqlConnection connection;
+            string connectionString;
+            connectionString = ConfigurationManager.ConnectionStrings["WindowsFormsApp5.Properties.Settings.Database1ConnectionString"].ConnectionString;
+            connection = new SqlConnection(connectionString);
+
+            //Open connection to run dat query
+            connection.Open();
+
+            //Query to get the population total, crime total for the selected year and province
+            string year = crimeTrackbar.Value.ToString();
+            string selectedPopYear = "b" + year;
+            string selectedCrimeYear = "m" + year;
+            string selectedProvince = province;
+            SqlDataAdapter data = new SqlDataAdapter("(SELECT province, " + selectedPopYear + ", " + selectedCrimeYear + ", b2005, m2005  FROM Crime WHERE province = '" + selectedProvince + "')", connection);
+
+            //Query is done, close connection
+            connection.Close();
+
+            //Store query result in datatable for later use
+            DataTable misdrijf = new DataTable();
+
+            data.Fill(misdrijf);
+            foreach (DataRow row in misdrijf.Rows)
+            { //row[0].ToString() + row[1].ToString() + row[2].ToString() + row[3].ToString() + row[4].ToString();
+
+                string provincie = row[0].ToString();
+                int pop = Convert.ToInt32(row[1]);
+                int crime = Convert.ToInt32(row[2]);
+                int popIncreaseDiff = Convert.ToInt32(row[1]) - Convert.ToInt32(row[3]);
+                int crimeIncreaseDiff = Convert.ToInt32(row[2]) - Convert.ToInt32(row[4]);
+                int crimeRatioDiff = (popIncreaseDiff / crimeIncreaseDiff);
+
+                mapText.Text = "Provincie: " + provincie + "\r\npopulatie in " + year + ": " + pop + "\r\nCriminaliteit in " + year + ": " + crime + "\r\nVerandering populatie sinds 2005: " + popIncreaseDiff + "\r\nVerandering criminaliteit sinds 2005: " + crimeIncreaseDiff + "";
+            }
         }
         //
         //                       

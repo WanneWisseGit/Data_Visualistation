@@ -54,7 +54,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(90, 3, 3, 3);
-            this.tabPage1.Size = new System.Drawing.Size(967, 689);
+            this.tabPage1.Size = new System.Drawing.Size(1167, 689);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Misdaad";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -74,7 +74,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(905, 689);
+            this.tabPage3.Size = new System.Drawing.Size(1167, 689);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Economy";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -95,7 +95,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 600);
+            this.ClientSize = new System.Drawing.Size(1200, 680);
             this.Controls.Add(this.materialTabSelector1);
             this.Controls.Add(this.materialTabControl1);
             this.Name = "Form5";
