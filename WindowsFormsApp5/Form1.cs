@@ -14,7 +14,7 @@ using System.Windows.Forms;
 //henk
 //henk2
 namespace WindowsFormsApp5
-{
+{   // The map page for picking an area that will open the environment page
     public partial class Form1 : Form
     {
         public Form1()

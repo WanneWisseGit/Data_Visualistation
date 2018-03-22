@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp5
-{
+{   // The main application page + menu where you switch between the tabs
     public partial class Form5 : MaterialForm
     {
         public Form5()

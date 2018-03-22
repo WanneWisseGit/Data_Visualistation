@@ -10,7 +10,7 @@ using Microsoft.Maps.MapControl.WPF;
 using System.Windows;
 
 namespace WindowsFormsApp5
-{
+{   // Form 4: criminality tab within the application
     public partial class Form4 : Form
     {
         private bool Slided;
