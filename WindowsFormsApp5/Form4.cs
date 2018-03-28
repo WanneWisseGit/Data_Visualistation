@@ -8,6 +8,8 @@ using System.Windows.Forms;
 using System.Configuration;
 using Microsoft.Maps.MapControl.WPF;
 using System.Windows;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace WindowsFormsApp5
 {   // Form 4: criminality tab within the application
@@ -76,11 +78,9 @@ namespace WindowsFormsApp5
             //Open connection to run dat query
             connection.Open();
 
-            //Query to get the population total, crime total per year per province
-            string selectedPopYear = "b" + year;
-            string selectedCrimeYear = "m" + year;
-            SqlDataAdapter data = new SqlDataAdapter("(SELECT Province, " + selectedPopYear + ",b2005," + selectedCrimeYear + ",m2005 FROM Crime)", connection);
-
+            //Query 
+            SqlDataAdapter data = new SqlDataAdapter("(SELECT * FROM Crime WHERE province =  '" + province + "')", connection);
+            //SELECT Province, " + selectedPopYear + ",b2005," + selectedCrimeYear + ",m2005 FROM Crime
             //Query is done, close connection
             connection.Close();
 
@@ -96,34 +96,100 @@ namespace WindowsFormsApp5
             //chart1.ChartAreas[0].AxisY.LabelStyle.ForeColor = Color.White;
 
             //Loop through the data to calculate the crime ratio and show it in the crimechart
+            int provYear = 2005;
+            List<int> pop = new List<int>();
+            List<int> crime = new List<int>();
+            List<int> ratio = new List<int>();
+
             foreach (DataRow row in misdrijf.Rows)
             {
-        
+                provYear++;
+                
                 string provincie = row[0].ToString();
-                int popIncrease = Convert.ToInt32(row[1]) - Convert.ToInt32(row[2]);
-                int crimeIncrease = Convert.ToInt32(row[3]) - Convert.ToInt32(row[4]);
-                int crimeRatio = (popIncrease / crimeIncrease);
-             
+                int crimeIncrease = 2;
+                int popIncrease = 2;
+                int crimeRatio = 2;
 
-                if (selectedCrimeChartInfoType == "pop")
+                pop.Add(Convert.ToInt32(row[1]));
+                pop.Add(Convert.ToInt32(row[2]));
+                pop.Add(Convert.ToInt32(row[3]));
+                pop.Add(Convert.ToInt32(row[4]));
+                pop.Add(Convert.ToInt32(row[5]));
+                pop.Add(Convert.ToInt32(row[6]));
+                pop.Add(Convert.ToInt32(row[7]));
+                pop.Add(Convert.ToInt32(row[8]));
+                pop.Add(Convert.ToInt32(row[9]));
+                pop.Add(Convert.ToInt32(row[10]));
+                pop.Add(Convert.ToInt32(row[11]));
+                pop.Add(Convert.ToInt32(row[12]));
+
+                crime.Add(Convert.ToInt32(row[13]));
+                crime.Add(Convert.ToInt32(row[14]));
+                crime.Add(Convert.ToInt32(row[15]));
+                crime.Add(Convert.ToInt32(row[16]));
+                crime.Add(Convert.ToInt32(row[17]));
+                crime.Add(Convert.ToInt32(row[18]));
+                crime.Add(Convert.ToInt32(row[19]));
+                crime.Add(Convert.ToInt32(row[20]));
+                crime.Add(Convert.ToInt32(row[21]));
+                crime.Add(Convert.ToInt32(row[22]));
+                crime.Add(Convert.ToInt32(row[23]));
+                crime.Add(Convert.ToInt32(row[24]));
+
+                ratio.Add(Convert.ToInt32(row[13]) / (Convert.ToInt32(row[1]) / 100));
+                ratio.Add(Convert.ToInt32(row[14]) / (Convert.ToInt32(row[2]) / 100));
+                ratio.Add(Convert.ToInt32(row[15]) / (Convert.ToInt32(row[3]) / 100));
+                ratio.Add(Convert.ToInt32(row[16]) / (Convert.ToInt32(row[4]) / 100));
+                ratio.Add(Convert.ToInt32(row[17]) / (Convert.ToInt32(row[5]) / 100));
+                ratio.Add(Convert.ToInt32(row[18]) / (Convert.ToInt32(row[6]) / 100));
+                ratio.Add(Convert.ToInt32(row[19]) / (Convert.ToInt32(row[7]) / 100));
+                ratio.Add(Convert.ToInt32(row[20]) / (Convert.ToInt32(row[8]) / 100));
+                ratio.Add(Convert.ToInt32(row[21]) / (Convert.ToInt32(row[9]) / 100));
+                ratio.Add(Convert.ToInt32(row[22]) / (Convert.ToInt32(row[10]) / 100));
+                ratio.Add(Convert.ToInt32(row[23]) / (Convert.ToInt32(row[11]) / 100));
+                ratio.Add(Convert.ToInt32(row[24]) / (Convert.ToInt32(row[12]) / 100));
+            }
+
+            if (selectedCrimeChartInfoType == "pop")
+            {
+                int max = pop.Max(r => r);
+                int min = pop.Min(r => r);
+                chart1.ChartAreas[0].AxisY.Maximum = max;
+                chart1.ChartAreas[0].AxisY.Minimum = min;
+                int yearr1 = 2005;
+                foreach (var poptotal in pop)
                 {
-                    chart1.ChartAreas[0].AxisY.Maximum = 200000;
-                    chart1.ChartAreas[0].AxisY.Minimum = -25000;
-                    chart1.Series["Criminaliteit"].Points.AddXY(provincie, popIncrease);
-                }
-                else if (selectedCrimeChartInfoType == "crime")
-                {
-                    chart1.ChartAreas[0].AxisY.Maximum = 5000;
-                    chart1.ChartAreas[0].AxisY.Minimum = -100000;
-                    chart1.Series["Criminaliteit"].Points.AddXY(provincie, crimeIncrease);
-                }
-                else if (selectedCrimeChartInfoType == "crimeratio")
-                {
-                    chart1.ChartAreas[0].AxisY.Maximum = 14;
-                    chart1.ChartAreas[0].AxisY.Minimum = -45;
-                    chart1.Series["Criminaliteit"].Points.AddXY(provincie, crimeRatio);
+                    chart1.Series["Criminaliteit"].Points.AddXY(yearr1.ToString(), poptotal);
+                    yearr1++;
                 }
             }
+            if (selectedCrimeChartInfoType == "crime")
+            {
+                int max = crime.Max(r => r);
+                int min = crime.Min(r => r);
+                chart1.ChartAreas[0].AxisY.Maximum = max;
+                chart1.ChartAreas[0].AxisY.Minimum = min;
+                int yearr2 = 2005;
+                foreach (var crimetotal in crime)
+                {
+                    chart1.Series["Criminaliteit"].Points.AddXY(yearr2.ToString(), crimetotal);
+                    yearr2++;
+                }
+            }
+            if (selectedCrimeChartInfoType == "crimeratio")
+            {
+                int max = ratio.Max(r => r);
+                int min = ratio.Min(r => r);
+                chart1.ChartAreas[0].AxisY.Maximum = max;
+                chart1.ChartAreas[0].AxisY.Minimum = min;
+                int yearr3 = 2005;
+                foreach (var rationr in ratio)
+                {
+                    chart1.Series["Criminaliteit"].Points.AddXY(yearr3.ToString(),rationr);
+                    yearr3++;
+                }
+            }
+
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
@@ -139,7 +205,7 @@ namespace WindowsFormsApp5
             selectedCrimeChartInfoType = "pop";
             drawNewCrimeChart(crimeTrackbar.Value);
             getNewMapData(province);
-            chartTypeExplain.Text = "Popululation change since 2005";
+            chartTypeExplain.Text = "Totale populatie 2005 t/m 2016";
         }
 
         //Set crimechart  to crime increase
@@ -148,7 +214,7 @@ namespace WindowsFormsApp5
             selectedCrimeChartInfoType = "crime";
             drawNewCrimeChart(crimeTrackbar.Value);
             getNewMapData(province);
-            chartTypeExplain.Text = "Crime change since 2005";
+            chartTypeExplain.Text = "Totale criminaliteit 2005 t/m 2016";
         }
 
         //Set crimechart type to ratio
@@ -157,7 +223,7 @@ namespace WindowsFormsApp5
             selectedCrimeChartInfoType = "crimeratio";
             drawNewCrimeChart(crimeTrackbar.Value);
             getNewMapData(province);
-            chartTypeExplain.Text = "pop/crime ratio. The change of population total and crime total since 2005.";
+            chartTypeExplain.Text = "Aantal procent inwoners die een misdaad hebben gepleegd 2005 t/m 2016";
         }
 
         public void Onb2Click(object sender, RoutedEventArgs e)
@@ -165,6 +231,8 @@ namespace WindowsFormsApp5
             Pushpin p = e.Source as Pushpin;
             setProv(p);
             getNewMapData(province);
+            drawNewCrimeChart(crimeTrackbar.Value);
+            textBox2.Text = province + " 2005 - 2016";
         }
 
         private void setProv(Pushpin p)
@@ -186,8 +254,7 @@ namespace WindowsFormsApp5
             string year = crimeTrackbar.Value.ToString();
             string selectedPopYear = "b" + year;
             string selectedCrimeYear = "m" + year;
-            string selectedProvince = province;
-            SqlDataAdapter data = new SqlDataAdapter("(SELECT province, " + selectedPopYear + ", " + selectedCrimeYear + ", b2005, m2005  FROM Crime WHERE province = '" + selectedProvince + "')", connection);
+            SqlDataAdapter data = new SqlDataAdapter("(SELECT province, " + selectedPopYear + ", " + selectedCrimeYear + ", b2005, m2005  FROM Crime WHERE province = '" + province + "')", connection);
 
             //Query is done, close connection
             connection.Close();
