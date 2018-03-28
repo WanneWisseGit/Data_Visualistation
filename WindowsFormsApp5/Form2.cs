@@ -19,7 +19,7 @@ using System.Windows.Media;
 using MaterialSkin.Controls;
 
 namespace WindowsFormsApp5
-{
+{   // Environment tab within the application
     public partial class Form2 : MaterialForm
     {
 

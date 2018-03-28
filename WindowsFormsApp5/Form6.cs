@@ -13,7 +13,7 @@ using Microsoft.Maps.MapControl.WPF;
 using System.Windows;
 
 namespace WindowsFormsApp5
-{
+{   // Form 6: Economy tab within the application
     public partial class Form6 : Form
     {
         private bool Slided;
