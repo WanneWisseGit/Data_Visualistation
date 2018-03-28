@@ -52,7 +52,7 @@
             // 
             this.crimeRatio1.AutoSize = true;
             this.crimeRatio1.Depth = 0;
-            this.crimeRatio1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.crimeRatio1.Font = new System.Drawing.Font("Roboto", 10F);
             this.crimeRatio1.Location = new System.Drawing.Point(31, 135);
             this.crimeRatio1.Margin = new System.Windows.Forms.Padding(0);
             this.crimeRatio1.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -75,6 +75,7 @@
             this.chart1.Location = new System.Drawing.Point(12, 270);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn;
             series1.Legend = "Legend1";
             series1.Name = "Criminaliteit";
             this.chart1.Series.Add(series1);
@@ -97,7 +98,7 @@
             // 
             this.crimeIncrease.AutoSize = true;
             this.crimeIncrease.Depth = 0;
-            this.crimeIncrease.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.crimeIncrease.Font = new System.Drawing.Font("Roboto", 10F);
             this.crimeIncrease.Location = new System.Drawing.Point(31, 165);
             this.crimeIncrease.Margin = new System.Windows.Forms.Padding(0);
             this.crimeIncrease.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -115,7 +116,7 @@
             // 
             this.popIncrease.AutoSize = true;
             this.popIncrease.Depth = 0;
-            this.popIncrease.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.popIncrease.Font = new System.Drawing.Font("Roboto", 10F);
             this.popIncrease.Location = new System.Drawing.Point(31, 195);
             this.popIncrease.Margin = new System.Windows.Forms.Padding(0);
             this.popIncrease.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -131,18 +132,20 @@
             // 
             // currentYear
             // 
+            this.currentYear.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.currentYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.currentYear.Location = new System.Drawing.Point(296, 37);
+            this.currentYear.Location = new System.Drawing.Point(220, 58);
             this.currentYear.Name = "currentYear";
-            this.currentYear.Size = new System.Drawing.Size(53, 21);
+            this.currentYear.Size = new System.Drawing.Size(53, 14);
             this.currentYear.TabIndex = 9;
-            this.currentYear.Text = "2005";
+            this.currentYear.Text = "2006";
             // 
             // chartTypeExplain
             // 
+            this.chartTypeExplain.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.chartTypeExplain.Location = new System.Drawing.Point(31, 244);
             this.chartTypeExplain.Name = "chartTypeExplain";
-            this.chartTypeExplain.Size = new System.Drawing.Size(302, 20);
+            this.chartTypeExplain.Size = new System.Drawing.Size(302, 13);
             this.chartTypeExplain.TabIndex = 10;
             // 
             // mapText
@@ -151,15 +154,16 @@
             this.mapText.Location = new System.Drawing.Point(746, 12);
             this.mapText.Multiline = true;
             this.mapText.Name = "mapText";
-            this.mapText.Size = new System.Drawing.Size(409, 120);
+            this.mapText.Size = new System.Drawing.Size(409, 103);
             this.mapText.TabIndex = 12;
             // 
             // textBox1
             // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(31, 12);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(229, 21);
+            this.textBox1.Size = new System.Drawing.Size(260, 14);
             this.textBox1.TabIndex = 13;
             this.textBox1.Text = "Selecteer een jaar om te vergelijken met 2005";
             // 
@@ -173,16 +177,18 @@
             // 
             // textBox3
             // 
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox3.Location = new System.Drawing.Point(220, 37);
+            this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(77, 21);
+            this.textBox3.Size = new System.Drawing.Size(71, 23);
             this.textBox3.TabIndex = 15;
             this.textBox3.Text = "Huidig jaar:";
             // 
             // elementHost1
             // 
-            this.elementHost1.Location = new System.Drawing.Point(485, 138);
+            this.elementHost1.Location = new System.Drawing.Point(485, 131);
             this.elementHost1.Name = "elementHost1";
             this.elementHost1.Size = new System.Drawing.Size(670, 438);
             this.elementHost1.TabIndex = 11;
