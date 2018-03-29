@@ -19,18 +19,23 @@ using System.Windows.Media;
 using MaterialSkin.Controls;
 
 namespace WindowsFormsApp5
-{   // Environment tab within the application
+{
     public partial class Form2 : MaterialForm
     {
 
-
+        string proivinchie;
+ 
         public Form2(string plaats)
         {
-
+            proivinchie = plaats;
             InitializeComponent();
-            string url = @"https://maps.googleapis.com/maps/api/place/textsearch/json?query=natuur+parken+in+" + plaats + "&key=AIzaSyBcQRoZeMCFZwcr-nJKpWTy_TVaSHAay9s";
-            var json = new WebClient().DownloadString(url);
+            Console.WriteLine(plaats);
 
+
+            string url = @"https://maps.googleapis.com/maps/api/place/textsearch/json?query=natuur+parken+in+" + plaats + "&key=AIzaSyBcQRoZeMCFZwcr-nJKpWTy_TVaSHAay9s";
+            Console.WriteLine(url);
+            var json = new WebClient().DownloadString(url);
+            Console.WriteLine(json);
 
 
 
@@ -38,20 +43,23 @@ namespace WindowsFormsApp5
 
             var JSONObj = ds.Deserialize<dynamic>(json);
 
-            if (JSONObj["results"][0]["photos"][0]["photo_reference"] != null)
-            {
+            //if (JSONObj["results"][0]["photos"][0]["photo_reference"]!= null)
+            //{
+            Console.WriteLine(json);
                 var hi = (JSONObj["results"][0]["photos"][0]["photo_reference"]);
+                
                 var request = WebRequest.Create("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + hi + "&key=AIzaSyBcQRoZeMCFZwcr-nJKpWTy_TVaSHAay9s");
+                Console.WriteLine(request);
                 using (var response = request.GetResponse())
                 using (var stream = response.GetResponseStream())
                 {
                     pictureBox1.Image = Bitmap.FromStream(stream);
                 }
-            }
-            else
-            {
-                pictureBox1.Image = null;
-            }
+            //}
+            //else
+            //{
+                //pictureBox1.Image = null;
+            //}
 
             foreach (var r in JSONObj["results"]) {
                 decimal lat = (r["geometry"]["location"]["lat"]);
@@ -70,7 +78,7 @@ namespace WindowsFormsApp5
             } 
 
             label1.Text = (JSONObj["results"][0]["formatted_address"] + "\n" + JSONObj["results"][1]["formatted_address"] + "\n" + JSONObj["results"][2]["formatted_address"]);
-
+            /*
             SqlConnection connection;
             Console.WriteLine(plaats);
             string connectionString;
@@ -96,7 +104,11 @@ namespace WindowsFormsApp5
                     foreach (DataRow row in GEMEENTE.Rows)
                     {
                         Console.WriteLine("Hallo");
-                        this.chart1.Series["Groen1"].Points.AddXY("2010", row["J2010"].ToString());
+                        if (checkedListBox1.CheckedItems.Contains("Jaar 2010"))
+                        {
+                            this.chart1.Series["Groen1"].Points.AddXY("2010", row["J2010"].ToString());
+
+                        }
                         this.chart1.Series["Groen1"].Points.AddXY("2011", row["J2011"].ToString());
                         this.chart1.Series["Groen1"].Points.AddXY("2012", row["J2012"].ToString());
                         this.chart1.Series["Groen1"].Points.AddXY("2013", row["J2013"].ToString());
@@ -107,9 +119,88 @@ namespace WindowsFormsApp5
                     }
                 }
             }
+            */
             mapUserControl1.Map.ZoomLevel = 7;
             mapUserControl1.Map.Center = new Location(52.191735, 3.0369282);
             mapUserControl1.Map.CredentialsProvider = new ApplicationIdCredentialsProvider("AhAI5K2EcnQZDcORVbCzo3ny5iDZSwySoZxalua_NmT-OhfDDoXgV3gW-2Atqp0k");
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SqlConnection connection;
+            Console.WriteLine(proivinchie);
+            string connectionString;
+            string commandText = "SELECT * From GEMEENTE WHERE Gemeente =@plaats";
+
+
+            connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["WindowsFormsApp5.Properties.Settings.Database1ConnectionString"].ConnectionString;
+            using (connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(commandText, connection);
+                command.Parameters.AddWithValue("@plaats", proivinchie);
+                //command.Parameters.Add("@plaats", SqlDbType.VarChar);
+                //command.Parameters["@plaats"].Value = plaats;
+                connection.Open();
+
+
+                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                {
+                    Console.WriteLine(adapter.ToString());
+                    DataTable GEMEENTE = new DataTable();
+                    adapter.Fill(GEMEENTE);
+
+                    this.chart1.Series["Groen1"].Points.Clear();
+                    foreach (DataRow row in GEMEENTE.Rows)
+                    {
+                        Console.WriteLine("Hallo");
+                        if (checkedListBox1.GetItemCheckState(0) == CheckState.Checked)
+                        {
+                            
+                            Console.WriteLine("piet");
+                            this.chart1.Series["Groen1"].Points.AddXY("2010", row["J2010"].ToString());
+                            
+
+                        }
+
+                        if (checkedListBox1.GetItemCheckState(1) == CheckState.Checked)
+                        {
+                            Console.WriteLine("piet");
+                            this.chart1.Series["Groen1"].Points.AddXY("2011", row["J2011"].ToString());
+                        }
+                        
+                        if (checkedListBox1.GetItemCheckState(2) == CheckState.Checked)
+                        {
+                            
+                            this.chart1.Series["Groen1"].Points.AddXY("2012", row["J2012"].ToString());
+                        }
+                        if (checkedListBox1.GetItemCheckState(3) == CheckState.Checked)
+                        {
+                            this.chart1.Series["Groen1"].Points.AddXY("2013", row["J2013"].ToString());
+                        }
+                        if (checkedListBox1.GetItemCheckState(4) == CheckState.Checked)
+                        {
+                            this.chart1.Series["Groen1"].Points.AddXY("2014", row["J2014"].ToString());
+                        }
+                        if (checkedListBox1.GetItemCheckState(5) == CheckState.Checked)
+                        {
+                            this.chart1.Series["Groen1"].Points.AddXY("2015", row["J2015"].ToString());
+                        }
+                        if (checkedListBox1.GetItemCheckState(6) == CheckState.Checked)
+                        {
+                            this.chart1.Series["Groen1"].Points.AddXY("2016", row["J2016"].ToString());
+                        }
+  
+
+
+
+
+
+
+
+                    }
+                }
+            }
+
         }
     }
 }

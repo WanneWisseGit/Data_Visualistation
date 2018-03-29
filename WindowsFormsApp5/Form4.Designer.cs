@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.crimeRatio1 = new MaterialSkin.Controls.MaterialRadioButton();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.crimeTrackbar = new System.Windows.Forms.TrackBar();
@@ -41,9 +41,9 @@
             this.mapText = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
             this.mapUserControl1 = new WindowsFormsApp5.MapUserControl();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crimeTrackbar)).BeginInit();
             this.SuspendLayout();
@@ -52,7 +52,7 @@
             // 
             this.crimeRatio1.AutoSize = true;
             this.crimeRatio1.Depth = 0;
-            this.crimeRatio1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.crimeRatio1.Font = new System.Drawing.Font("Roboto", 10F);
             this.crimeRatio1.Location = new System.Drawing.Point(523, 41);
             this.crimeRatio1.Margin = new System.Windows.Forms.Padding(0);
             this.crimeRatio1.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -68,18 +68,18 @@
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(446, 147);
             this.chart1.Name = "chart1";
-            series2.BorderWidth = 10;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.Name = "Criminaliteit";
-            this.chart1.Series.Add(series2);
+            series1.BorderWidth = 10;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend1";
+            series1.Name = "Criminaliteit";
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(885, 425);
             this.chart1.TabIndex = 1;
             this.chart1.Text = "Criminaliteit chart1";
@@ -99,8 +99,8 @@
             // 
             this.crimeIncrease.AutoSize = true;
             this.crimeIncrease.Depth = 0;
-            this.crimeIncrease.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.crimeIncrease.Location = new System.Drawing.Point(523, 76);
+            this.crimeIncrease.Font = new System.Drawing.Font("Roboto", 10F);
+            this.crimeIncrease.Location = new System.Drawing.Point(523, 73);
             this.crimeIncrease.Margin = new System.Windows.Forms.Padding(0);
             this.crimeIncrease.MouseLocation = new System.Drawing.Point(-1, -1);
             this.crimeIncrease.MouseState = MaterialSkin.MouseState.HOVER;
@@ -117,7 +117,7 @@
             // 
             this.popIncrease.AutoSize = true;
             this.popIncrease.Depth = 0;
-            this.popIncrease.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.popIncrease.Font = new System.Drawing.Font("Roboto", 10F);
             this.popIncrease.Location = new System.Drawing.Point(523, 106);
             this.popIncrease.Margin = new System.Windows.Forms.Padding(0);
             this.popIncrease.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -168,7 +168,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(429, 26);
             this.textBox1.TabIndex = 13;
-            this.textBox1.Text = "Selecteer een jaar";
+            this.textBox1.Text = "Selecteer een jaar en provincie";
             // 
             // textBox2
             // 
@@ -182,24 +182,25 @@
             this.textBox2.TabIndex = 19;
             this.textBox2.Text = "Drenthe";
             // 
+            // textBox3
+            // 
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(528, 146);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(608, 15);
+            this.textBox3.TabIndex = 20;
+            this.textBox3.Text = "Aantal procent inwoners die een misdaad hebben gepleegd 2005-2016";
+            // 
             // elementHost1
             // 
+            this.elementHost1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.elementHost1.Location = new System.Drawing.Point(31, 183);
             this.elementHost1.Name = "elementHost1";
             this.elementHost1.Size = new System.Drawing.Size(429, 377);
             this.elementHost1.TabIndex = 11;
             this.elementHost1.Text = "elementHost1";
             this.elementHost1.Child = this.mapUserControl1;
-            // 
-            // textBox3
-            // 
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(528, 148);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(238, 15);
-            this.textBox3.TabIndex = 20;
-            this.textBox3.Text = "Aantal procent inwoners die een misdaad hebben gepleegd 2005-2016";
             // 
             // Form4
             // 

@@ -34,9 +34,10 @@
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
             this.mapUserControl1 = new WindowsFormsApp5.MapUserControl();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -74,15 +75,6 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "label1";
             // 
-            // elementHost1
-            // 
-            this.elementHost1.Location = new System.Drawing.Point(715, 105);
-            this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(409, 281);
-            this.elementHost1.TabIndex = 3;
-            this.elementHost1.Text = "elementHost1";
-            this.elementHost1.Child = this.mapUserControl1;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -92,11 +84,38 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Parken in de provincie";
             // 
+            // checkedListBox1
+            // 
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Items.AddRange(new object[] {
+            "Jaar 2010",
+            "Jaar 2011",
+            "Jaar 2012",
+            "Jaar 2013",
+            "Jaar 2014",
+            "Jaar 2015",
+            "Jaar 2016"});
+            this.checkedListBox1.Location = new System.Drawing.Point(312, 273);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(120, 94);
+            this.checkedListBox1.TabIndex = 5;
+            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            // 
+            // elementHost1
+            // 
+            this.elementHost1.Location = new System.Drawing.Point(715, 105);
+            this.elementHost1.Name = "elementHost1";
+            this.elementHost1.Size = new System.Drawing.Size(409, 281);
+            this.elementHost1.TabIndex = 3;
+            this.elementHost1.Text = "elementHost1";
+            this.elementHost1.Child = this.mapUserControl1;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1148, 507);
+            this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.elementHost1);
             this.Controls.Add(this.label1);
@@ -118,5 +137,6 @@
         private System.Windows.Forms.Integration.ElementHost elementHost1;
         private MapUserControl mapUserControl1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckedListBox checkedListBox1;
     }
 }

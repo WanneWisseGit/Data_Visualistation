@@ -178,6 +178,7 @@ namespace WindowsFormsApp5
             }
             if (selectedCrimeChartInfoType == "crimeratio")
             {
+                Console.WriteLine(province);
                 int max = ratio.Max(r => r);
                 int min = ratio.Min(r => r);
                 chart1.ChartAreas[0].AxisY.Maximum = max;
