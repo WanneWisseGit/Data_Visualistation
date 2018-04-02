@@ -206,7 +206,7 @@ namespace WindowsFormsApp5
             selectedCrimeChartInfoType = "pop";
             drawNewCrimeChart(crimeTrackbar.Value);
             getNewMapData(province);
-            chartTypeExplain.Text = "Totale populatie 2005 t/m 2016";
+            textBox3.Text = "Totale populatie 2005 t/m 2016";
         }
 
         //Set crimechart  to crime increase
@@ -215,7 +215,7 @@ namespace WindowsFormsApp5
             selectedCrimeChartInfoType = "crime";
             drawNewCrimeChart(crimeTrackbar.Value);
             getNewMapData(province);
-            chartTypeExplain.Text = "Totale criminaliteit 2005 t/m 2016";
+            textBox3.Text = "Totale criminaliteit 2005 t/m 2016";
         }
 
         //Set crimechart type to ratio
@@ -224,7 +224,7 @@ namespace WindowsFormsApp5
             selectedCrimeChartInfoType = "crimeratio";
             drawNewCrimeChart(crimeTrackbar.Value);
             getNewMapData(province);
-            chartTypeExplain.Text = "Aantal procent inwoners die een misdaad hebben gepleegd 2005 t/m 2016";
+            textBox3.Text = "Aantal procent inwoners die een misdaad hebben gepleegd 2005 t/m 2016";
         }
 
         public void Onb2Click(object sender, RoutedEventArgs e)
@@ -233,7 +233,7 @@ namespace WindowsFormsApp5
             setProv(p);
             getNewMapData(province);
             drawNewCrimeChart(crimeTrackbar.Value);
-            textBox2.Text = province + " 2005 - 2016";
+            textBox2.Text = province + " 2005 t/m 2016";
         }
 
         private void setProv(Pushpin p)

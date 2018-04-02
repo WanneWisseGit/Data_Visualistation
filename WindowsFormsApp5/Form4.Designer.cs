@@ -51,6 +51,7 @@
             // crimeRatio1
             // 
             this.crimeRatio1.AutoSize = true;
+            this.crimeRatio1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.crimeRatio1.Depth = 0;
             this.crimeRatio1.Font = new System.Drawing.Font("Roboto", 10F);
             this.crimeRatio1.Location = new System.Drawing.Point(523, 41);
@@ -86,6 +87,7 @@
             // 
             // crimeTrackbar
             // 
+            this.crimeTrackbar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.crimeTrackbar.Location = new System.Drawing.Point(31, 41);
             this.crimeTrackbar.Maximum = 2016;
             this.crimeTrackbar.Minimum = 2006;
@@ -98,6 +100,7 @@
             // crimeIncrease
             // 
             this.crimeIncrease.AutoSize = true;
+            this.crimeIncrease.Cursor = System.Windows.Forms.Cursors.Hand;
             this.crimeIncrease.Depth = 0;
             this.crimeIncrease.Font = new System.Drawing.Font("Roboto", 10F);
             this.crimeIncrease.Location = new System.Drawing.Point(523, 73);
@@ -116,6 +119,7 @@
             // popIncrease
             // 
             this.popIncrease.AutoSize = true;
+            this.popIncrease.Cursor = System.Windows.Forms.Cursors.Hand;
             this.popIncrease.Depth = 0;
             this.popIncrease.Font = new System.Drawing.Font("Roboto", 10F);
             this.popIncrease.Location = new System.Drawing.Point(523, 106);
@@ -135,7 +139,7 @@
             // 
             this.currentYear.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.currentYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.currentYear.Location = new System.Drawing.Point(229, 50);
+            this.currentYear.Location = new System.Drawing.Point(229, 49);
             this.currentYear.Name = "currentYear";
             this.currentYear.Size = new System.Drawing.Size(53, 17);
             this.currentYear.TabIndex = 9;
@@ -180,7 +184,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(637, 27);
             this.textBox2.TabIndex = 19;
-            this.textBox2.Text = "Drenthe";
+            this.textBox2.Text = "Drenthe 2005 t/m 2016";
             // 
             // textBox3
             // 
@@ -199,7 +203,7 @@
             this.elementHost1.Name = "elementHost1";
             this.elementHost1.Size = new System.Drawing.Size(429, 377);
             this.elementHost1.TabIndex = 11;
-            this.elementHost1.Text = "elementHost1";
+            this.elementHost1.Text = "l";
             this.elementHost1.Child = this.mapUserControl1;
             // 
             // Form4
